@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block heading %}Live Attendance Tracker{% endblock %}
+
+{% block content %}
+<div class="attendance-container">
+    <div class="glass-panel live-view">
+        <div class="status-indicator" id="scannerStatus">
+            <div class="pulse"></div> Scanning for Faces...
+        </div>
+        
+        <div class="camera-wrapper mt-2">
+            <video id="webcam" autoplay playsinline></video>
+            <canvas id="canvas" style="display:none;"></canvas>
+            <div class="scan-line"></div>
+        </div>
+        
+        <div id="attendanceResult" class="result-box mt-2" style="display:none;"></div>
+        
+        <div class="controls mt-2 text-center">
+            <button id="toggleScanner" class="btn btn-warning"><i class="fa-solid fa-pause"></i> Pause Scanner</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/recognize.js') }}"></script>
+{% endblock %}

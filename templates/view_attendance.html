@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block heading %}Attendance Records{% endblock %}
+
+{% block content %}
+<div class="glass-panel">
+    <h3><i class="fa-solid fa-calendar-day"></i> Today's Attendance</h3>
+    <table class="data-table mt-2">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.student_roll }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.time }}</td>
+                <td><span class="badge badge-success">{{ record.status }}</span></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center">No records found for today.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

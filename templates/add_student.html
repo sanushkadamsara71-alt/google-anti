@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block heading %}Enroll New Student{% endblock %}
+
+{% block content %}
+<div class="enroll-container split-layout">
+    <div class="glass-panel form-section">
+        <h3>Student Details</h3>
+        <div class="input-group">
+            <label>Student ID / Roll No</label>
+            <input type="text" id="studentRoll" placeholder="e.g. STU1001" required>
+        </div>
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="studentName" placeholder="e.g. John Doe" required>
+        </div>
+        <button id="captureSubmitBtn" class="btn btn-primary mt-2 w-100" disabled><i class="fa-solid fa-save"></i> Save Student</button>
+    </div>
+    
+    <div class="glass-panel camera-section">
+        <h3>Face Registration</h3>
+        <div class="camera-wrapper">
+            <video id="webcam" autoplay playsinline></video>
+            <canvas id="canvas" style="display:none;"></canvas>
+            <img id="snapshot" style="display:none;" />
+            <div class="overlay-guideline"></div>
+        </div>
+        <div class="camera-controls mt-2">
+            <button id="captureBtn" class="btn btn-secondary w-100"><i class="fa-solid fa-camera"></i> Capture Face</button>
+            <button id="retakeBtn" class="btn btn-warning w-100" style="display:none;"><i class="fa-solid fa-rotate-right"></i> Retake</button>
+        </div>
+        <p class="helper-text mt-1 text-center"><small>Please look directly at the camera.</small></p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/capture.js') }}"></script>
+{% endblock %}

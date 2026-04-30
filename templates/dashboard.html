@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block heading %}System Overview Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-grid">
+    <div class="stat-card glass-panel gradient-blue">
+        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="stat-details">
+            <h3>Total Students</h3>
+            <h2>{{ stats.total_students }}</h2>
+        </div>
+    </div>
+    
+    <div class="stat-card glass-panel gradient-green">
+        <div class="stat-icon"><i class="fa-solid fa-user-check"></i></div>
+        <div class="stat-details">
+            <h3>Present Today</h3>
+            <h2>{{ stats.present_today }}</h2>
+        </div>
+    </div>
+    
+    <div class="stat-card glass-panel gradient-red">
+        <div class="stat-icon"><i class="fa-solid fa-user-xmark"></i></div>
+        <div class="stat-details">
+            <h3>Absent Today</h3>
+            <h2>{{ stats.absent_today }}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="recent-section glass-panel">
+    <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Attendance</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in attendance %}
+            <tr>
+                <td>{{ record.student_roll }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.time }}</td>
+                <td><span class="badge badge-success">{{ record.status }}</span></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center">No attendance recorded today yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
